@@ -1,0 +1,18 @@
+div.container {
+    padding: 10px 10px 10px 10px;
+}
+th a {
+    color: #525252;
+}
+.all-cyclists {
+    width:  45%;
+}
+.selected-cyclists {
+    width:  45%;
+    margin-left: 15px;
+}
+div.tables {
+    display: inline-flex;
+    width: 100%;
+    margin-top: 10px;
+}

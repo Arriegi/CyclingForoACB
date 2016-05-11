@@ -1,0 +1,77 @@
+@(title: String,csss: String,jss: String)(body:Html)
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")' />
+    <!--<link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")' />-->
+    <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("lib/bootstrap/css/bootstrap.css")' />
+    <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("lib/bootstrap/css/bootstrap-theme.min.css")' />
+    <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/skeleton.css")' />
+    <title>@title</title>
+    @if(csss != null) {
+        @for(css <- csss.split(",")) {
+            <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/" + css + ".css")' />
+        }
+    }
+</head>
+<body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">GT Manager</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Races <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-race" role="menu">
+
+                        </ul>
+                    </li>
+                    @if(session().get("email")) {
+                    <li>
+                        <a href="/player/team/last">My team</a>
+                    </li>
+                    }
+                    @if(session().get("email") != null && session().get("email").equals("jarriaga86@gmail.com")) {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/admin/input">Create cyclist/teams/races/stages</a></li>
+                            <li><a id="cyclist-race-link" href="#">Add cyclists for race</a></li>
+                            <li><a href="#">Set stage classification</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </li>
+                    }
+                    @if(session().get("email")) {
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@session().get("email") <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Account</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        <div class="modal fade" id="races-modal">
+            <div class="modal-dialog">
+                <div class="list-group">
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <script type="text/javascript" src='@routes.Assets.at("lib/jquery/jquery.js")'></script>
+        <script type="text/javascript" src='@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")'></script>
+        <script type="text/javascript" src='@routes.Assets.at("javascripts/skeleton.js")'></script>
+        @if(jss != null) {
+            @for(js <- jss.split(",")) {
+                <script type="text/javascript" src='@routes.Assets.at("javascripts/" + js + ".js")'></script>
+            }
+        }
+        @body
+</body>
+</html>

@@ -1,0 +1,114 @@
+@skeleton("GT Manager","input","input") {
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="tabbable" id="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#panel-teams" data-toggle="tab">Teams</a>
+                    </li>
+                    <li>
+                        <a href="#panel-cyclists" data-toggle="tab">Cyclists</a>
+                    </li>
+                    <li>
+                        <a href="#panel-races" data-toggle="tab">Races</a>
+                    </li>
+                    <li>
+                        <a href="#panel-stages" data-toggle="tab">Stages</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-teams">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="teamName">Team name</label><input type="text" class="form-control" id="teamName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="uciCode">UCI Code</label><input type="text" class="form-control" id="uciCode" />
+                            </div>
+                            <button id="create-team" class="btn btn-default">Save</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="panel-cyclists">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label><input type="text" class="form-control" id="firstName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label><input type="text" class="form-control" id="lastName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">Birthday</label><input type="date" class="form-control" id="birthday" />
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label><input type="text" class="form-control" id="country" />
+                            </div>
+                            <div class="form-group">
+                                <select id="team-select" class="form-control"></select>
+                            </div>
+                            <button id="create-cyclist" class="btn btn-default">Save</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="panel-races">
+                        <div class="form-group">
+                            <select id="race-type" class="form-control">
+                                <option value="GIRO">Giro d'Italia</option>
+                                <option value="TOUR">Tour de France</option>
+                                <option value="VUELTA">Vuelta a España</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="race-year" class="form-control">
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        <button id="create-race" class="btn btn-default">Save</button>
+                    </div>
+                    <div class="tab-pane" id="panel-stages">
+                        <div class="form-group">
+                            <select id="stage-race" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stage-number">Stage Number</label><input min="1" max="21" type="number" class="form-control" id="stage-number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="stage-description">Description</label><input type="text" class="form-control" id="stage-description" />
+                        </div>
+                        <div class="checkbox checkbox-inline">
+                            <label><input type="checkbox" id="is-ttt"/>Team Time Trial</label>
+                        </div>
+                        <div class="checkbox checkbox-inline">
+                            <label><input type="checkbox" id="has-mc" checked/>Clasificaci&oacute;n Montaña</label>
+                        </div>
+                        <div class="checkbox checkbox-inline">
+                            <label><input type="checkbox" id="has-rc" checked/>Clasificaci&oacute;n Regularidad</label>
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="m-hc">HC Mountains</label><input type="number" class="form-control" id="m-hc" />
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="m-1">1 Mountains</label><input type="number" class="form-control" id="m-1" />
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="m-2">2 Mountains</label><input type="number" class="form-control" id="m-2" />
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="m-3">3 Mountains</label><input type="number" class="form-control" id="m-3" />
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="m-4">4 Mountains</label><input type="number" class="form-control" id="m-4" />
+                        </div>
+                        <div class="form-group not-ttt">
+                            <label for="s-int">Intermediate Sprints</label><input type="number" class="form-control" id="s-int" />
+                        </div>
+                        <button id="create-stage" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+}

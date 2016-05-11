@@ -1,0 +1,43 @@
+div.list-team a {
+    text-align: center;
+}
+div.list-team {
+    width: 40%;
+    margin-left: 25%;
+    margin-right: 5%;
+}
+div.money-info {
+    width: 20%;
+}
+div.list-team button {
+    float: right;
+    font-size: 17px;
+    position: relative;
+    top: -4px;
+}
+button#save-team {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#modal-player-team .select-button {
+    font-size: 17px;
+    float: right;
+    position: relative;
+    top: -5px;
+
+}
+span.price {
+    width: 30px;
+    float: right;
+    margin-right: 150px;
+}
+div.parallel {
+    display: inline-flex;
+    width: 100%;
+}
+#cyclist-filter {
+    margin-bottom: 5px;
+}

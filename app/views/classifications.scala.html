@@ -1,0 +1,227 @@
+@(race: model.races.Race)(cyclists: List[model.points.CyclistRace])(teams: List[model.cyclists.Team])
+<script type="text/javascript">
+        var riders = [
+        @for(cyclist<-cyclists) {
+            "@cyclist.getCyclist().getFirstName() @cyclist.getCyclist().getLastName()",
+        }
+        ];
+        var teams = [
+        @for(team<-teams) {
+            "@team.getName()",
+        }
+        ]
+    </script>
+@skeleton("GT Manager","classifications,jquery-ui.min,jquery-ui.structure.min,jquery-ui.theme.min","stage,classifications,jquery-ui.min") {
+    <h1 class="title">@race.getName().toCamelCase()  @race.getYear()</h1>
+    <div class="row clearfix">
+        <div id="stages" class="col-md-4 col-md-offset-4 column">
+            <select class="form-control">
+                @for(stage <- race.getOrderedStages()) {
+                    <option value="@stage.getId()" data-stage-number="@stage.getStageNumber()">@stage.getStageNumber(): @stage.getDescription()</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 col-md-offset-1 column empty">
+            <h3>Vac&iacute;os</h3>
+            @for(stage <- race.getStages()) {
+                @if(stage.getStageNumber() != 1){
+                    <div class="list-group invisible @stage.getStageNumber()">
+                } else {
+                    <div class="list-group @stage.getStageNumber()">
+                }
+                @if(stage.hasMC()){
+                    <a href="#" class="list-group-item stage mc">Clasificaci&oacute;n montaña</a>
+                }
+                @if(stage.hasRC()){
+                    <a href="#" class="list-group-item stage rc">Clasificaci&oacute;n regularidad</a>
+                }
+                <a href="#" class="list-group-item stage gc">Clasificaci&oacute;n general</a>
+                @if(stage.isTTT()) {
+                    <a href="#" class="list-group-item stage ttt">Clasificaci&oacute;n etapa</a>
+                } else {
+                    @for(a <- 0 to stage.getmHC()-1) {
+                        <a href="#" class="list-group-item mhc">Montaña HC</a>
+                    }
+                    @for(a <- 0 to stage.getM1()-1) {
+                        <a href="#" class="list-group-item m1">Montaña 1</a>
+                    }
+                    @for(a <- 0 to stage.getM2()-1) {
+                        <a href="#" class="list-group-item m2">Montaña 2</a>
+                    }
+                    @for(a <- 0 to stage.getM3()-1) {
+                        <a href="#" class="list-group-item m3">Montaña 3</a>
+                    }
+                    @for(a <- 0 to stage.getM4()-1) {
+                        <a href="#" class="list-group-item m4">Montaña 4</a>
+                    }
+                    @for(a <- 0 to stage.getsInt()-1) {
+                        <a href="#" class="list-group-item sprint">Sprint intermedio</a>
+                    }
+                    <a href="#" class="list-group-item stage normal">Clasificaci&oacute;n etapa</a>
+                }
+                </div>
+            }
+        </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists gc">
+                <h3>Elige ciclistas</h3>
+                <div><label>1º</label><input type="text" class="form-control gc1" /></div>
+                <div><label>2º</label><input type="text" class="form-control gc2" /></div>
+                <div><label>3º</label><input type="text" class="form-control gc3" /></div>
+                <div><label>4º</label><input type="text" class="form-control gc4" /></div>
+                <div><label>5º</label><input type="text" class="form-control gc5" /></div>
+                <div><label>6º</label><input type="text" class="form-control gc6" /></div>
+                <div><label>7º</label><input type="text" class="form-control gc7" /></div>
+                <div><label>8º</label><input type="text" class="form-control gc8" /></div>
+                <div><label>9º</label><input type="text" class="form-control gc9" /></div>
+                <div><label>10º</label><input type="text" class="form-control gc10" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists rc">
+                <h3>Elige ciclistas</h3>
+                <div><label>1º</label><input type="text" class="form-control rc1" /></div>
+                <div><label>2º</label><input type="text" class="form-control rc2" /></div>
+                <div><label>3º</label><input type="text" class="form-control rc3" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists mc">
+                <h3>Elige ciclistas</h3>
+                <div><label>1º</label><input type="text" class="form-control mc1" /></div>
+                <div><label>2º</label><input type="text" class="form-control mc2" /></div>
+                <div><label>3º</label><input type="text" class="form-control mc3" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists ttt">
+                <h3>Elige equipos</h3>
+                <div><label>1º</label><input type="text" class="form-control t1" /></div>
+                <div><label>2º</label><input type="text" class="form-control t2" /></div>
+                <div><label>3º</label><input type="text" class="form-control t3" /></div>
+                <div><label>4º</label><input type="text" class="form-control t4" /></div>
+                <div><label>5º</label><input type="text" class="form-control t5" /></div>
+                <div><label>6º</label><input type="text" class="form-control t6" /></div>
+                <div><label>7º</label><input type="text" class="form-control t7" /></div>
+                <div><label>8º</label><input type="text" class="form-control t8" /></div>
+                <div><label>9º</label><input type="text" class="form-control t9" /></div>
+                <div><label>10º</label><input type="text" class="form-control t10" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists m1">
+                <h3>Elige ciclistas</h3>
+                <label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control m1" /></div>
+                <div><label>2º</label><input type="text" class="form-control m2" /></div>
+                <div><label>3º</label><input type="text" class="form-control m3" /></div>
+                <div><label>4º</label><input type="text" class="form-control m4" /></div>
+                <div><label>5º</label><input type="text" class="form-control m5" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists m2">
+                <h3>Elige ciclistas</h3>
+                <label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control m1" /></div>
+                <div><label>2º</label><input type="text" class="form-control m2" /></div>
+                <div><label>3º</label><input type="text" class="form-control m3" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists m3">
+                <h3>Elige ciclistas</h3>
+                <label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control m1" /></div>
+                <div><label>2º</label><input type="text" class="form-control m2" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists m4">
+                <h3>Elige ciclistas</h3>
+                <div></div><label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control m1" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists mhc">
+                <h3>Elige ciclistas</h3>
+                <label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control m1" /></div>
+                <div><label>2º</label><input type="text" class="form-control m2" /></div>
+                <div><label>3º</label><input type="text" class="form-control m3" /></div>
+                <div><label>4º</label><input type="text" class="form-control m4" /></div>
+                <div><label>5º</label><input type="text" class="form-control m5" /></div>
+                <div><label>6º</label><input type="text" class="form-control m6" /></div>
+                <div><label>7º</label><input type="text" class="form-control m7" /></div>
+                <div><label>8º</label><input type="text" class="form-control m8" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists sprint">
+                <h3>Elige ciclistas</h3>
+                <label>Nombre</label><input type="text" class="form-control name" />
+                <div><label>1º</label><input type="text" class="form-control sint1" /></div>
+                <div><label>2º</label><input type="text" class="form-control sint2" /></div>
+                <div><label>3º</label><input type="text" class="form-control sint3" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-4 col-md-offset-2 column select-cyclists stage">
+                <h3>Elige ciclistas</h3>
+                <div><label>1º</label><input type="text" class="form-control c1" /></div>
+                <div><label>2º</label><input type="text" class="form-control c2" /></div>
+                <div><label>3º</label><input type="text" class="form-control c3" /></div>
+                <div><label>4º</label><input type="text" class="form-control c4" /></div>
+                <div><label>5º</label><input type="text" class="form-control c5" /></div>
+                <div><label>6º</label><input type="text" class="form-control c6" /></div>
+                <div><label>7º</label><input type="text" class="form-control c7" /></div>
+                <div><label>8º</label><input type="text" class="form-control c8" /></div>
+                <div><label>9º</label><input type="text" class="form-control c9" /></div>
+                <div><label>10º</label><input type="text" class="form-control c10" /></div>
+                <div><label>11º</label><input type="text" class="form-control c12" /></div>
+                <div><label>12º</label><input type="text" class="form-control c12" /></div>
+                <div><label>13º</label><input type="text" class="form-control c13" /></div>
+                <div><label>14º</label><input type="text" class="form-control c14" /></div>
+                <div><label>15º</label><input type="text" class="form-control c15" /></div>
+                <div><label>16º</label><input type="text" class="form-control c16" /></div>
+                <div><label>17º</label><input type="text" class="form-control c17" /></div>
+                <div><label>18º</label><input type="text" class="form-control c18" /></div>
+                <div><label>19º</label><input type="text" class="form-control c19" /></div>
+                <div><label>20º</label><input type="text" class="form-control c20" /></div>
+                <button class="btn btn-primary">Save</button>
+            </div>
+        <div class="col-md-4 col-md-offset-2 column completed">
+            <h3>Completos</h3>
+            <div class="list-group" id="filled-cass">
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" id="save-stage">Guardar etapa</button>
+    </div>
+    <div class="list-group hidden-teams" style="display: none;">
+        @for(team <- teams) {
+        <a class="list-group-item" data-team-id="@team.getId()">
+            <span class="team-name">@team.getName()</span>
+        </a>
+        }
+    </div>
+    <div class="modal fade" id="modal-cyclists-classification" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Corredores disponibles
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        @for(cyclist <- cyclists) {
+                        <a class="list-group-item" data-cyclist-race-id="@cyclist.getId()">
+                            <span class="name">@cyclist.getCyclist().getFirstName() @cyclist.getCyclist().getLastName()</span><button class="btn-xs btn btn-primary select-button">Select</button><span class="price">@cyclist.getPrice()</span>
+
+                        </a>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default dismiss" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,13 @@
+div.navbar-header {
+    width: 10%
+}
+ul.navbar-nav {
+    width: 90%;
+}
+li.user-dropdown {
+    float:right;
+}
+h1.title {
+    text-align: center;
+    margin-bottom: 20px;
+}

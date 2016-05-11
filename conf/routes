@@ -1,0 +1,111 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+########################## WEB APPLICATION #############################
+
+# Home page
+GET     /                                       controllers.Application.index()
+GET     /login                                  controllers.Application.login()
+POST    /login                                  controllers.Application.authenticate()
+GET     /logout                                 controllers.Application.logout()
+GET     /admin/input                            controllers.Application.input()
+GET     /signIn                                 controllers.Application.signIn()
+POST    /signIn                                 controllers.Application.createAccount()
+GET     /admin/:raceName/:raceYear              controllers.Application.adminRace(raceName: String, raceYear: Int)
+GET     /admin/:raceName/:raceYear/stages       controllers.Application.setClassifications(raceName: String, raceYear: Int)
+GET     /player/team/last                       controllers.Application.getTeamForLastRace()
+GET     /player/team/:raceId                    controllers.Application.getTeamForRace(raceId: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /webjars/*file                          @controllers.WebJarAssets.at(file)
+GET     /assets/*file                           controllers.Assets.at(path="/public", file)
+
+########################## REST APPLICATION #############################
+
+#Cyclist
+GET /cyclists                                       controllers.Cyclists.list()
+GET /cyclist/:id                                    controllers.Cyclists.get(id: Long)
+GET /race/:id/cyclists                              controllers.Cyclists.getByRace(id: Long)
+POST /cyclist                                       controllers.Cyclists.create()
+PUT /cyclist/:id                                    controllers.Cyclists.update(id: Long)
+DELETE /cyclist/:id                                 controllers.Cyclists.delete(id: Long)
+POST /race/:raceId/cyclist/:cyclistId               controllers.Cyclists.createCyclistRace(raceId: Long, cyclistId: Long)
+PUT /cyclistRace/:id                                controllers.Cyclists.updateCyclistRace(id: Long)
+DELETE /cyclistRace/:id                             controllers.Cyclists.deleteCyclistRace(id: Long)
+GET /race/:id/cyclists/non-added                    controllers.Cyclists.getNonAdded(id: Long)
+
+#Teams
+GET /teams                          controllers.Teams.list()
+GET /team/:id                       controllers.Teams.get(id: Long)
+POST /team                          controllers.Teams.create()
+PUT /team/:id                       controllers.Teams.update(id: Long)
+DELETE /team/:id                    controllers.Teams.delete(id: Long)
+
+#Races
+GET /races                          controllers.Races.list()
+GET /races/available                controllers.Races.availables()
+GET /race/:id                       controllers.Races.get(id: Long)
+POST /race                          controllers.Races.create()
+PUT /race/:id                       controllers.Races.update(id: Long)
+DELETE /race/:id                    controllers.Races.delete(id: Long)
+
+#Stages
+GET /stages                         controllers.Stages.list()
+GET /stage/:id                      controllers.Stages.get(id: Long)
+GET /race/:id/stages                controllers.Stages.getByRace(id: Long)
+POST /stage                         controllers.Stages.create()
+PUT /stage/:id                      controllers.Stages.update(id: Long)
+DELETE /stage/:id                   controllers.Stages.delete(id: Long)
+
+#Players
+GET /players                         controllers.Players.list()
+GET /player/:id                      controllers.Players.get(id: Long)
+POST /player                         controllers.Players.create()
+PUT /player/:id                      controllers.Players.update(id: Long)
+DELETE /player/:id                   controllers.Players.delete(id: Long)
+
+#Classifications
+GET /classifications                controllers.Classifications.list()
+GET /stage/:id/classifications      controllers.Classifications.getByStage(id: Long)
+GET /m1/:id                         controllers.MountainAndSprints.getM1(id: Long)
+GET /m2/:id                         controllers.MountainAndSprints.getM2(id: Long)
+GET /m3/:id                         controllers.MountainAndSprints.getM3(id: Long)
+GET /m4/:id                         controllers.MountainAndSprints.getM4(id: Long)
+GET /mHC/:id                        controllers.MountainAndSprints.getMHC(id: Long)
+GET /sInt/:id                       controllers.MountainAndSprints.getSInt(id: Long)
+GET /ttt/:id                        controllers.MountainAndSprints.getTTT(id: Long)
+GET /stageClassification/:id        controllers.MountainAndSprints.getStageClassification(id: Long)
+DELETE /m1/:id                      controllers.MountainAndSprints.deleteM1(id: Long)
+DELETE /m2/:id                      controllers.MountainAndSprints.deleteM2(id: Long)
+DELETE /m3/:id                      controllers.MountainAndSprints.deleteM3(id: Long)
+DELETE /m4/:id                      controllers.MountainAndSprints.deleteM4(id: Long)
+DELETE /mHC/:id                     controllers.MountainAndSprints.deleteMHC(id: Long)
+DELETE /sInt/:id                    controllers.MountainAndSprints.deleteSInt(id: Long)
+DELETE /ttt/:id                     controllers.MountainAndSprints.deleteTTT(id: Long)
+DELETE /stageClassification/:id     controllers.MountainAndSprints.deleteStageClassification(id: Long)
+POST /m1                            controllers.MountainAndSprints.createM1()
+POST /m2                            controllers.MountainAndSprints.createM2()
+POST /m3                            controllers.MountainAndSprints.createM3()
+POST /m4                            controllers.MountainAndSprints.createM4()
+POST /mHC                           controllers.MountainAndSprints.createMHC()
+POST /sInt                          controllers.MountainAndSprints.createSInt()
+POST /ttt                           controllers.MountainAndSprints.createTTT()
+POST /stageClassification           controllers.MountainAndSprints.createStageClassification()
+POST /classification                controllers.MountainAndSprints.createStageAllClassifications()
+
+
+
+#PlayerTeams
+GET /playerTeams                    controllers.PlayerTeams.list()
+GET /playerTeam/:id                 controllers.PlayerTeams.get(id: Long)
+POST /playerTeam                    controllers.PlayerTeams.create()
+PUT  /playerTeam/:id                controllers.PlayerTeams.update(id: Long)
+DELETE /playerTeam/:id              controllers.PlayerTeams.delete(id: Long)
+GET /player/:id/teams               controllers.PlayerTeams.getByPlayer(id: Long)
+GET /playerTeams/:race/:year        controllers.PlayerTeams.getByRace(race: String, year: Int)
+GET /player/:id/:raceName/:year     controllers.PlayerTeams.getByPlayerAndRace(id: Long, raceName: String, year: Int)
+
+
+
+

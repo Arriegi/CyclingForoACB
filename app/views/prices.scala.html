@@ -1,0 +1,70 @@
+@(race: model.races.Race)
+
+@skeleton(race.getName().toCamelCase() + " " + race.getYear(),"jquery.dynatable,prices","jquery.dynatable,prices") {
+    <div class="container">
+        <h1 class="title" data-race-id="@race.getId()">Corredores @race.getName().toCamelCase() @race.getYear()</h1>
+        <a href="/admin/input">Create new cyclist</a>
+        <div class="tables">
+            <div class="all-cyclists">
+                <table class="table" id="all-cyclists">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Team</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="selected-cyclists">
+                <table class="table" id="selected-cyclists">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Team</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-price" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Nuevo corredor
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="modal-price-name">Name</label><input disabled type="text" class="form-control" id="modal-price-name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-price-team">Team</label><input disabled type="text" class="form-control" id="modal-price-team" />
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-price-price">Price</label><input min="50" type="number" class="form-control" id="modal-price-price" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default dismiss" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.dynatable.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/prices.js")"></script>
+}

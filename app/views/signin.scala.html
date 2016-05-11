@@ -1,0 +1,39 @@
+@(form: Form[controllers.forms.NewUser])
+@skeleton("GT Manager","login",null) {
+    @helper.form(routes.Application.createAccount) {
+    <h1 class="title">Sign in</h1>
+    @if(form.hasGlobalErrors) {
+    <p class="error">
+        @form.globalError.message
+    </p>
+    }
+
+    <p>
+        <input type="email" name="email" placeholder="Email" value="@form("email").value">
+    </p>
+    <p>
+        <input type="password" name="password" placeholder="Password">
+    </p>
+    <p>
+        <input type="password" name="repeatPassword" placeholder="Password">
+    </p>
+    <p>
+        <button type="submit">Login</button>
+    </p>
+    }
+    @if(flash.containsKey("success")) {
+    <div class="well">
+        <div id="success-message" class="text-success">
+            @flash.get("success")
+        </div>
+    </div>
+    }
+    @if(flash.containsKey("error")) {
+    <div class="well">
+        <div id="error-message" class="text-danger">
+            @flash.get("error")
+        </div>
+    </div>
+    }
+    </div>
+}

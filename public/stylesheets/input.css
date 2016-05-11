@@ -1,0 +1,15 @@
+div.container {
+    padding-top: 20px;
+}
+div[class*=tab-pane] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+button {
+    display: block!important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.checkbox {
+    margin-top:0px!important;
+}

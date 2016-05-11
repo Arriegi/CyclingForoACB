@@ -1,0 +1,134 @@
+@(team: model.points.PlayerTeam)(cyclists: List[model.points.CyclistRace])(race: model.races.Race)(player: model.users.Player)
+
+@skeleton("Team for " + race.getName().toCamelCase() + " " + race.getYear(),"playerteams","playerteams,sprintf.min") {
+<h1 class="title">@race.getName().toCamelCase() @race.getYear</h1>
+<div class="parallel">
+    <div class="list-group list-team">
+    @if(team != null) {
+            <a class="list-group-item" data-cyclist-number="1" data-cyclist-race-id="@team.getCyclist1().getId()">
+                @team.getCyclist1().getCyclist().getFirstName() @team.getCyclist1().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist1().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="2" data-cyclist-race-id="@team.getCyclist2().getId()">
+                @team.getCyclist2().getCyclist().getFirstName() @team.getCyclist2().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist2().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="3" data-cyclist-race-id="@team.getCyclist3().getId()">
+                @team.getCyclist3().getCyclist().getFirstName() @team.getCyclist3().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist3().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="4" data-cyclist-race-id="@team.getCyclist4().getId()">
+                @team.getCyclist4().getCyclist().getFirstName() @team.getCyclist4().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist4().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="5" data-cyclist-race-id="@team.getCyclist5().getId()">
+                @team.getCyclist5().getCyclist().getFirstName() @team.getCyclist5().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist5().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="6" data-cyclist-race-id="@team.getCyclist6().getId()">
+                @team.getCyclist6().getCyclist().getFirstName() @team.getCyclist6().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist6().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="7" data-cyclist-race-id="@team.getCyclist7().getId()">
+                @team.getCyclist7().getCyclist().getFirstName() @team.getCyclist7().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist7().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="8" data-cyclist-race-id="@team.getCyclist8().getId()">
+                @team.getCyclist8().getCyclist().getFirstName() @team.getCyclist8().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist8().getPrice()</span>
+            </a>
+            <a class="list-group-item" data-cyclist-number="9" data-cyclist-race-id="@team.getCyclist9().getId()">
+                @team.getCyclist9().getCyclist().getFirstName() @team.getCyclist9().getCyclist().getLastName()
+                <button class="btn-xs btn btn-danger">Sale</button>
+                <span class="price">@team.getCyclist9().getPrice()</span>
+            </a>
+    } else {
+                <a class="list-group-item" data-cyclist-number="1">
+                    Cyclist 1
+                    <button class="btn-xs btn btn-success" data-cyclist-number="1">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="2">
+                    Cyclist 2
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="3">
+                    Cyclist 3
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="4">
+                    Cyclist 4
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="5">
+                    Cyclist 5
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="6">
+                    Cyclist 6
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="7">
+                    Cyclist 7
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="8">
+                    Cyclist 8
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+                <a class="list-group-item" data-cyclist-number="9">
+                    Cyclist 9
+                    <button class="btn-xs btn btn-success">Buy</button>
+                </a>
+    }
+    </div>
+    <div class="money-info">
+        <div class="form-group">
+            <label for="total">Total disponible</label><input disabled type="text" class="form-control" id="total" value="1750"/>
+        </div>
+        <div class="form-group">
+            <label for="rest">Restante</label><input type="text" disabled class="form-control" id="rest" />
+        </div>
+        <div class="form-group">
+            <label for="rest-cyclists">Ciclistas restantes</label><input disabled type="text" class="form-control" id="rest-cyclists" />
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary" disabled id="save-team" data-player-id="@player.getId()" data-race-id="@race.getId()" @if(team != null) {data-team-id="@team.getId()"}>Save</button>
+<div class="modal fade" id="modal-player-team" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Corredores disponibles
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" class="form-control" id="cyclist-filter">
+                </div>
+                <div class="list-group">
+                    @for(cyclist <- cyclists) {
+                    <a class="list-group-item" data-cyclist-race-id="@cyclist.getId()">
+                        <span class="name">@cyclist.getCyclist().getFirstName() @cyclist.getCyclist().getLastName()</span><button class="btn-xs btn btn-primary select-button">Select</button><span class="price">@cyclist.getPrice()</span>
+
+                    </a>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dismiss" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
