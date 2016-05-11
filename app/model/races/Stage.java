@@ -31,12 +31,17 @@ public class Stage implements Comparable<Stage>{
     private int mHC,m1,m2,m3,m4,sInt,stageNumber;
     private boolean isTTT,hasMC,hasRC;
 
+    @Transient
     private General generalClassification;
+    @Transient
     private StageSprint stageClassification;
+    @Transient
     private TeamTimeTrialClassification tttClassification;
+    @Transient
     private Mountain mountainClassification;
+    @Transient
     private Points pointsClassification;
-    @ElementCollection(targetClass = MountainHC.class)
+    @ElementCollection
     private List<MountainHC> mhcClassificationList;
     @ElementCollection
     private List<MountainFirst> m1ClassificationList;

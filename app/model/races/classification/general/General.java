@@ -1,6 +1,5 @@
 package model.races.classification.general;
 
-import model.cyclists.Cyclist;
 import model.points.CyclistRace;
 import model.races.Stage;
 import model.races.classification.Classification;
